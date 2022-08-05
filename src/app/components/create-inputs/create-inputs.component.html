@@ -1,0 +1,28 @@
+<form class="inputs" [formGroup]="spendForm">
+  <mat-form-field class="name-input" appearance="fill">
+    <mat-label>Spend name</mat-label>
+    <input formControlName="name" matInput type="text" />
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="clearNameInput()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field class="value-input" appearance="fill">
+    <mat-label>Spend value</mat-label>
+    <input placeholder="0" formControlName="value" matInput type="number" />
+    <span matPrefix>$&nbsp;</span>
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="clearValueInput()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</form>
+<div class="btn"><button class="add-spend-button" mat-button>Add</button></div>
