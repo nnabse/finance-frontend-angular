@@ -7,11 +7,7 @@ import { TitleComponent } from './components/title/title.component';
 import { CreateInputsComponent } from './components/create-inputs/create-inputs.component';
 import { SpendListComponent } from './components/spend-list/spend-list.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -24,12 +20,8 @@ import { MatTableModule } from '@angular/material/table';
     BrowserModule,
     ReactiveFormsModule,
     NoopAnimationsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
     BrowserAnimationsModule,
-    MatTableModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
