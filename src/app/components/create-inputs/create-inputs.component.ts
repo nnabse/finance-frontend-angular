@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,16 +6,13 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './create-inputs.component.html',
   styleUrls: ['./create-inputs.component.scss'],
 })
-export class CreateInputsComponent {
-  spendForm = new FormGroup({
+export class CreateInputsComponent implements OnInit {
+  public spendForm = new FormGroup({
     name: new FormControl('shop name'),
     value: new FormControl(100),
   });
 
-  clearNameInput(): void {
-    this.spendForm.controls.name.setValue('');
-  }
-  clearValueInput(): void {
-    this.spendForm.controls.value.setValue(0);
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 }

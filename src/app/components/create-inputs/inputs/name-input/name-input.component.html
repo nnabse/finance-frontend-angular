@@ -1,0 +1,14 @@
+<form class="inputs" [formGroup]="formName">
+  <mat-form-field class="name-input" appearance="fill">
+    <mat-label>Spend name</mat-label>
+    <input formControlName="name" matInput type="text" />
+    <button
+      (click)="clearNameInput()"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</form>

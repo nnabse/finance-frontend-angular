@@ -12,15 +12,15 @@
       <label>{{ i + 1 }}) </label>{{ spend.name }}
     </div>
     <div *ngIf="spend.isEditing" class="new_name_input">
-      <input value="{{ spend.name }}" type="text" />
+      <input [value]="spend.value" type="text" />
     </div>
     <div *ngIf="!spend.isEditing" class="spend_date">{{ spend.date }}</div>
     <div *ngIf="spend.isEditing" class="new_date_input">
-      <input value="{{ spend.date }}" type="text" />
+      <input [value]="spend.date" type="text" />
     </div>
     <div *ngIf="!spend.isEditing" class="spend_value">${{ spend.value }}</div>
     <div *ngIf="spend.isEditing" class="new_value_input">
-      <input value="{{ spend.value }}" type="text" />
+      <input [value]="spend.date" type="text" />
     </div>
     <div class="icons">
       <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>

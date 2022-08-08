@@ -1,17 +1,4 @@
 .inputs {
   display: flex;
-}
-
-.name-input {
-  margin-right: 15px;
-}
-
-.add-spend-btn button {
-  width: 20%;
-}
-
-.add-spend-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 15px;
 }
