@@ -1,0 +1,30 @@
+<div class="total_sum">
+  <p *ngIf="totalSum">Total spend sum: ${{ totalSum }}</p>
+  <p *ngIf="!totalSum">You haven't any spends yet!</p>
+</div>
+<div class="spend_list">
+  <div
+    *ngFor="let spend of localSpendList; let i = index"
+    id="spend_{{ i }}"
+    class="spend"
+  >
+    <div *ngIf="!spend.isEditing" class="spend_name">
+      <label>{{ i + 1 }}) </label>{{ spend.name }}
+    </div>
+    <div *ngIf="spend.isEditing" class="new_name_input">
+      <input [value]="spend.value" type="text" />
+    </div>
+    <div *ngIf="!spend.isEditing" class="spend_date">{{ spend.date }}</div>
+    <div *ngIf="spend.isEditing" class="new_date_input">
+      <input [value]="spend.date" type="text" />
+    </div>
+    <div *ngIf="!spend.isEditing" class="spend_value">${{ spend.value }}</div>
+    <div *ngIf="spend.isEditing" class="new_value_input">
+      <input [value]="spend.date" type="text" />
+    </div>
+    <div class="icons">
+      <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
+      <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
+    </div>
+  </div>
+</div>

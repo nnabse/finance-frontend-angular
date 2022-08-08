@@ -1,0 +1,27 @@
+.total_sum {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.spend_list {
+  display: flex;
+  height: 80%;
+  gap: 15px;
+  flex-direction: column;
+  .spend {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 1rem;
+    border-radius: 3px;
+
+    height: 15%;
+    width: 100%;
+
+    padding: 0 15px;
+
+    background-color: rgba(grey, 0.2);
+  }
+}
