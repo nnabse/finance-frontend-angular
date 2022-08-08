@@ -7,9 +7,11 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
   styleUrls: ['./add-spend.component.scss'],
 })
 export class AddSpendComponent implements OnInit {
-  public spendForm!: FormGroup;
+  public spendForm: FormGroup;
 
-  constructor(private rootFormGroup: FormGroupDirective) {}
+  constructor(private rootFormGroup: FormGroupDirective) {
+    this.spendForm = this.rootFormGroup.control;
+  }
 
   ngOnInit(): void {
     this.spendForm = this.rootFormGroup.control;

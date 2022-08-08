@@ -17,13 +17,11 @@ export class SpendListComponent implements OnInit {
 
   constructor() {}
 
-  getTotalSum(): number {
-    this.totalSum = 0;
-    this.localSpendList.reduce(
-      (prev: number, curr: Spend) => (this.totalSum += curr.value),
-      this.totalSum
+  getTotalSum(): void {
+    this.totalSum = this.localSpendList.reduce(
+      (sum: number, curr: Spend) => sum + curr.value,
+      0
     );
-    return this.totalSum;
   }
 
   ngOnInit(): void {

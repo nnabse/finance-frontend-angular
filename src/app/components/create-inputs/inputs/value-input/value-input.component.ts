@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormGroupDirective } from '@angular/forms';
+import { FormGroup, FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'app-value-input',
@@ -7,9 +7,11 @@ import { FormGroup, FormControl, FormGroupDirective } from '@angular/forms';
   styleUrls: ['./value-input.component.scss'],
 })
 export class ValueInputComponent implements OnInit {
-  public formValue!: FormGroup;
+  public formValue: FormGroup;
 
-  constructor(private rootFormGroup: FormGroupDirective) {}
+  constructor(private rootFormGroup: FormGroupDirective) {
+    this.formValue = this.rootFormGroup.control;
+  }
 
   ngOnInit(): void {
     this.formValue = this.rootFormGroup.control;

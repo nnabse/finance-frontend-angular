@@ -7,9 +7,11 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
   styleUrls: ['./name-input.component.scss'],
 })
 export class NameInputComponent implements OnInit {
-  public formName!: FormGroup;
+  public formName: FormGroup;
 
-  constructor(private rootFormGroup: FormGroupDirective) {}
+  constructor(private rootFormGroup: FormGroupDirective) {
+    this.formName = this.rootFormGroup.control;
+  }
 
   ngOnInit(): void {
     this.formName = this.rootFormGroup.control;
