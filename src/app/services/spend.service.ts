@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { QueryParams, Spend } from '../models/Spend';
+import { Spend } from '@models/Spend';
+
+import { HttpService } from './http.service';
+import { BehaviorSubject, catchError, throwError } from 'rxjs';
 
 import {
   GET_ALL_SPENDS_LINK,
@@ -7,9 +10,6 @@ import {
   RENAME_SPEND_LINK,
   DELETE_SPEND_LINK,
 } from '../links.constants';
-
-import { HttpService } from './http.service';
-import { BehaviorSubject, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -36,10 +36,10 @@ export class SpendService {
         this.spendList$.next([...this.spendList$.value, resp]);
       });
   }
+
   renameSpend(_id: number, body: object): void {
     this.httpService
       .rename<Spend>(RENAME_SPEND_LINK, { _id }, body)
-      .pipe(catchError((err) => throwError(() => err)))
       .subscribe(() => {
         return this.spendList$.next(
           this.spendList$.value.map((elem) => {

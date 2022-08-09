@@ -24,7 +24,7 @@ export class SpendListComponent implements OnInit, OnDestroy {
   public newDate = '';
   public newValue = 100;
 
-  private subscription: Subscription = new Subscription();
+  private subscription = new Subscription();
 
   constructor(private spendService: SpendService) {}
 
