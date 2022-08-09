@@ -1,21 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Spend } from 'src/app/models/Spend';
+import { SpendService } from 'src/app/services/spend.service';
 
 @Component({
   selector: 'app-spend-list',
   templateUrl: './spend-list.component.html',
   styleUrls: ['./spend-list.component.scss'],
 })
-export class SpendListComponent implements OnInit {
-  public localSpendList: Spend[] = [
-    { name: 'shop1', date: '2000.01.01', value: 100, isEditing: false },
-    { name: 'shop2', date: '2000.01.01', value: 200, isEditing: false },
-    { name: 'shop3', date: '2000.01.01', value: 300, isEditing: false },
-  ];
+export class SpendListComponent implements OnInit, OnDestroy {
+  public localSpendList: Spend[] = [];
 
   public totalSum: number = 0;
 
-  constructor() {}
+  public isEditing: boolean = false;
+  private isInputsEmpty: boolean = true;
+
+  public name: string = 'new name';
+  public date: string = this.getCurrDate();
+  public value: number = 100;
+
+  public newName: string = '';
+  public newDate: string = '';
+  public newValue: number = 100;
+
+  private subscription: Subscription | null = null;
+
+  constructor(private spendService: SpendService) {}
 
   getTotalSum(): void {
     this.totalSum = this.localSpendList.reduce(
@@ -25,6 +36,70 @@ export class SpendListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTotalSum();
+    this.subscription = this.spendService.spendList$.subscribe((data) => {
+      this.localSpendList = data;
+      this.getTotalSum();
+    });
+    this.spendService.getAllSpends();
+  }
+
+  editorToggle(idx: number, flag: boolean): void {
+    if (this.isEditing && flag) return;
+    this.localSpendList.map((elem, index) => {
+      if (index === idx) elem.isEditing = flag;
+    });
+    this.isEditing = flag;
+  }
+
+  deleteSpend(id: number): void {
+    this.spendService.deleteSpend(id);
+  }
+
+  clearRenameInputs(): void {
+    this.name = '';
+    this.value = 0;
+    this.newName = '';
+    this.newValue = 0;
+  }
+
+  getCurrDate(): string {
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    return `${year}-${month}-${day}`;
+  }
+
+  getInputsValues(): void {
+    this.newName = this.name;
+    this.newValue = this.value;
+    this.newDate = this.date;
+  }
+
+  renameInputsCheck(): void {
+    if (this.newName === '' || !this.newDate || this.newValue <= 0) return;
+    this.isInputsEmpty = false;
+  }
+
+  renameSpend(idx: number, id: number): void {
+    this.isInputsEmpty = true;
+    this.getInputsValues();
+    this.renameInputsCheck();
+
+    if (this.isInputsEmpty) return;
+
+    this.spendService.renameSpend(id, {
+      name: this.newName,
+      createDate: this.newDate,
+      value: this.newValue,
+    });
+    this.editorToggle(idx, false);
+    this.clearRenameInputs();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

@@ -2,29 +2,49 @@
   <p *ngIf="totalSum">Total spend sum: ${{ totalSum }}</p>
   <p *ngIf="!totalSum">You haven't any spends yet!</p>
 </div>
-<div class="spend_list">
+<div *ngIf="localSpendList" class="spend_list">
   <div
     *ngFor="let spend of localSpendList; let i = index"
-    id="spend_{{ i }}"
+    id="spend_{{ spend._id }}"
     class="spend"
   >
     <div *ngIf="!spend.isEditing" class="spend_name">
       <label>{{ i + 1 }}) </label>{{ spend.name }}
     </div>
-    <div *ngIf="spend.isEditing" class="new_name_input">
-      <input [value]="spend.value" type="text" />
+    <div *ngIf="spend.isEditing" class="rename_inputs">
+      <input placeholder="name" type="text" [(ngModel)]="name" />
+      <input type="date" [(ngModel)]="date" />
+      <input placeholder="value" type="number" [(ngModel)]="value" />
     </div>
-    <div *ngIf="!spend.isEditing" class="spend_date">{{ spend.date }}</div>
-    <div *ngIf="spend.isEditing" class="new_date_input">
-      <input [value]="spend.date" type="text" />
+    <div *ngIf="!spend.isEditing" class="spend_date">
+      {{ spend.createDate }}
     </div>
     <div *ngIf="!spend.isEditing" class="spend_value">${{ spend.value }}</div>
-    <div *ngIf="spend.isEditing" class="new_value_input">
-      <input [value]="spend.date" type="text" />
-    </div>
     <div class="icons">
-      <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
-      <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
+      <mat-icon
+        *ngIf="!spend.isEditing"
+        aria-hidden="false"
+        fontIcon="edit"
+        (click)="editorToggle(i, true)"
+      ></mat-icon>
+      <mat-icon
+        *ngIf="!spend.isEditing"
+        aria-hidden="false"
+        fontIcon="delete"
+        (click)="deleteSpend(spend._id)"
+      ></mat-icon>
+      <mat-icon
+        *ngIf="spend.isEditing"
+        aria-hidden="false"
+        fontIcon="close"
+        (click)="editorToggle(i, false)"
+      ></mat-icon>
+      <mat-icon
+        *ngIf="spend.isEditing"
+        aria-hidden="false"
+        fontIcon="done"
+        (click)="renameSpend(i, spend._id)"
+      ></mat-icon>
     </div>
   </div>
 </div>
