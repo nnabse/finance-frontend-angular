@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
-import { SpendService } from 'src/app/services/spend.service';
+import { SpendService } from '@services/spend.service';
 
 @Component({
   selector: 'app-add-spend',
@@ -10,8 +10,8 @@ import { SpendService } from 'src/app/services/spend.service';
 export class AddSpendComponent implements OnInit {
   public spendForm: FormGroup;
 
-  private checkName: string = '';
-  private checkValue: number = 0;
+  private checkName = '';
+  private checkValue = 0;
 
   constructor(
     private rootFormGroup: FormGroupDirective,

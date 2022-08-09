@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Spend } from 'src/app/models/Spend';
-import { SpendService } from 'src/app/services/spend.service';
+import { Spend } from '@models/Spend';
+import { SpendService } from '@services/spend.service';
 
 @Component({
   selector: 'app-spend-list',
@@ -16,15 +16,15 @@ export class SpendListComponent implements OnInit, OnDestroy {
   public isEditing: boolean = false;
   private isInputsEmpty: boolean = true;
 
-  public name: string = 'new name';
-  public date: string = this.getCurrDate();
-  public value: number = 100;
+  public name = 'new name';
+  public date = this.getCurrDate();
+  public value = 100;
 
-  public newName: string = '';
-  public newDate: string = '';
-  public newValue: number = 100;
+  public newName = '';
+  public newDate = '';
+  public newValue = 100;
 
-  private subscription: Subscription | null = null;
+  private subscription: Subscription = new Subscription();
 
   constructor(private spendService: SpendService) {}
 
