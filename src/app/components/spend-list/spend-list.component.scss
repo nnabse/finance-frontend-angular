@@ -5,10 +5,17 @@
 
 .spend_list {
   display: flex;
-  height: 80%;
+  height: 100%;
   gap: 15px;
   flex-direction: column;
   .spend {
+    .rename_inputs {
+      display: flex;
+      justify-content: space-between;
+    }
+    .rename_inputs input {
+      width: 25%;
+    }
     display: flex;
 
     justify-content: space-between;

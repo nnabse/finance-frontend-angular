@@ -1,6 +1,11 @@
 export interface Spend {
+  _id: number;
   name: string;
-  date?: string;
+  createDate: string;
   value: number;
-  isEditing?: boolean;
+  isEditing: boolean;
+}
+
+export interface QueryParams {
+  [_id: string]: number;
 }
