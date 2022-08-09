@@ -40,6 +40,7 @@ export class SpendService {
   renameSpend(_id: number, body: object): void {
     this.httpService
       .rename<Spend>(RENAME_SPEND_LINK, { _id }, body)
+      .pipe(catchError((err) => throwError(() =>  err)))
       .subscribe(() => {
         return this.spendList$.next(
           this.spendList$.value.map((elem) => {
