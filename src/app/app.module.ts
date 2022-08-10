@@ -17,6 +17,7 @@ import { NameInputComponent } from '@components/create-inputs/inputs/name-input/
 import { ValueInputComponent } from '@components/create-inputs/inputs/value-input/value-input.component';
 import { AddSpendComponent } from '@components/create-inputs/button/add-spend/add-spend.component';
 import { SpendListComponent } from '@components/spend-list/spend-list.component';
+import { SnackbarComponent } from '@components/spend-list/snackbar/snackbar.component';
 
 import { MaterialModule } from './material/material.module';
 
@@ -29,6 +30,7 @@ import { MaterialModule } from './material/material.module';
     ValueInputComponent,
     AddSpendComponent,
     SpendListComponent,
+    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,7 @@ import { MaterialModule } from './material/material.module';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [SnackbarComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
